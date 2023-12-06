@@ -34,11 +34,13 @@ RUN apt-get update && \
     libmariadbclient18 \
     python-wheel \
     tzdata \
-    v4l-utils \
+    git \
+    v4l-utils &&\
     curl -L --output /tmp/motion.deb https://github.com/Motion-Project/motion/releases/download/release-4.4.0/bionic_motion_4.4.0-1_amd64.deb && \
     dpkg -i /tmp/motion.deb && \
     rm /tmp/motion.deb && \
-    pip install /tmp/motioneye && \
+    git clone https://github.com/motioneye-project/motioneye.git -o /tmp/motioneye && \
+    pip install /tmp/motioneye/motioneye && \
     rm -rf /tmp/motioneye && \
     apt-get purge --yes \
     python-pip \
